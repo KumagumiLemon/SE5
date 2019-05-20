@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class IntToEng {
     //メインメソッド
 	public static void main(String[] args) {
-		System.out.println("0~100までの整数を入力してください");
+		System.out.println("0~1000までの整数を入力してください");
 		Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
         System.out.println(translateEng(input));
@@ -21,6 +21,20 @@ public class IntToEng {
     	
         if (n == 0) sl = "zero"; //nが0のとき
         if (n == 1000) sl = "one thousand"; //nが1000のとき
+        if (100<n && n<1000) {
+    		o = n / 100;
+  		    if (o == 1) so = "one";  
+  		    if (o == 2) so = "two"; 
+  		    if (o == 3) so = "three"; 
+  		    if (o == 4) so = "four"; 
+  	  	    if (o == 5) so = "five";
+ 	        if (o == 6) so = "six"; 
+  		    if (o == 7) so = "seven"; 
+  		    if (o == 8) so = "eight"; 
+  		    if (o == 9) so = "nine"; 
+  		    so += " hundred ";
+  		    n -= o*100;
+    	}
     	if (0<n && n<11) { //nが0~10以下のとき
     		l = n % 10;
     		if (l == 0) sl = "ten";
@@ -59,29 +73,22 @@ public class IntToEng {
   		    if (l == 9) sl = "nine"; 
   		    
     		m = n / 10;
-  		    if (m == 2) sm = "twenty"; 
-  		    if (m == 3) sm = "thirty";   
-  		    if (m == 4) sm = "forty"; 
-            if (m == 5) sm = "fifty"; 
-            if (m == 6) sm = "sixty"; 
-            if (m == 7) sm = "seventy"; 
-            if (m == 8) sm = "eighty"; 
-            if (m == 9) sm = "ninety"; 
+  		    if (m == 2) sm = "twenty "; 
+  		    if (m == 3) sm = "thirty ";   
+  		    if (m == 4) sm = "forty "; 
+            if (m == 5) sm = "fifty "; 
+            if (m == 6) sm = "sixty "; 
+            if (m == 7) sm = "seventy "; 
+            if (m == 8) sm = "eighty "; 
+            if (m == 9) sm = "ninety "; 
     	}
-    	if (100<n && n<1000) {
-    		o = n / 100;
-  		    if (o == 1) so = "one";  
-  		    if (o == 2) so = "two"; 
-  		    if (o == 3) so = "three"; 
-  		    if (o == 4) so = "four"; 
-  	  	    if (o == 5) so = "five";
- 	        if (o == 6) so = "six"; 
-  		    if (o == 7) so = "seven"; 
-  		    if (o == 8) so = "eight"; 
-  		    if (o == 9) so = "nine"; 
-  		    so += " hundred";
+    	if (so == "" && sm == ""){
+    		s = sl;
+    	} else if (so =="") {
+    		s = sm + sl;
+    	} else {
+    		s = so + sm + sl; 
     	}
-    	s = so + " " + sm + " " +sl; 
     	return s;
     }
 }
