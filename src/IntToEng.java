@@ -21,7 +21,7 @@ public class IntToEng {
     	
         if (n == 0) sl = "zero"; //nが0のとき
         if (n == 1000) sl = "one thousand"; //nが1000のとき
-        if (100<n && n<1000) {
+        if (100<n && n<1000) {  //nが100~1000のとき
     		o = n / 100;
   		    if (o == 1) so = "one";  
   		    if (o == 2) so = "two"; 
