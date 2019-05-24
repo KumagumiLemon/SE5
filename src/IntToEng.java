@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class IntToEng {
     //メインメソッド
 	public static void main(String[] args) {
-		System.out.println("0~1000までの整数を入力してください");
+		System.out.println("0~10000までの整数を入力してください");
 		Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
         System.out.println(translateEng(input));
@@ -11,16 +11,32 @@ public class IntToEng {
 	
 	// 数値を英訳する変換するメソッド
     static String translateEng(int n) {
+    	int p; //1000の位
     	int o; //100の位
     	int m; //10の位
     	int l; //1の位
+    	String sp = ""; //英訳された1000の位    	
     	String so = ""; //英訳された100の位
     	String sm = ""; //英訳された10の位
     	String sl = ""; //英訳された1の位
     	String s;
     	
         if (n == 0) sl = "zero"; //nが0のとき
-        if (n == 1000) sl = "one thousand"; //nが1000のとき
+        if (n == 10000) sl = "ten thousand"; //nが10000のとき
+        if (1000<n && n<10000) {  //nが1000~10000のとき
+    		p = n / 1000;
+  		    if (p == 1) sp = "one";  
+  		    if (p == 2) sp = "two"; 
+  		    if (p == 3) sp = "three"; 
+  		    if (p == 4) sp = "four"; 
+  	  	    if (p == 5) sp = "five";
+ 	        if (p == 6) sp = "six"; 
+  		    if (p == 7) sp = "seven"; 
+  		    if (p == 8) sp = "eight"; 
+  		    if (p == 9) sp = "nine"; 
+  		    sp += " thousand ";
+  		    n -= p*1000;
+    	}
         if (100<n && n<1000) {  //nが100~1000のとき
     		o = n / 100;
   		    if (o == 1) so = "one";  
@@ -84,10 +100,12 @@ public class IntToEng {
     	}
     	if (so == "" && sm == ""){
     		s = sl;
-    	} else if (so =="") {
+    	} else if (so == "") {
     		s = sm + sl;
-    	} else {
+    	} else if (sp == ""){
     		s = so + sm + sl; 
+    	} else {
+    		s = sp + so + sm + sl; 
     	}
     	return s;
     }
